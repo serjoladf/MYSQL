@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório_Denuncias_5" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9177de31-306b-4f6a-b2e2-2bf826f3b7ce">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AtividadeFinal"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+	u.nome AS Moderador, 
+    sd.status, 
+    us.nome AS "Usúario punido", 
+    d.motivo As "Motivo da Punição",
+    sd.solucao_aplicada AS "Punição",
+	sd.data_resolucao AS "Data/Hora da Punição"
+ FROM denuncias AS d
+INNER JOIN 
+	solucoes_denuncias AS sd on sd.denuncia_id = d.denuncia_id
+INNER JOIN 
+	usuarios AS U ON u.usuario_id = d.usuario_id
+INNER JOIN 
+	usuarios AS Us ON us.usuario_id = sd.moderador_id;]]>
+	</queryString>
+	<field name="Moderador" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="Moderador"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solucoes_denuncias"/>
+	</field>
+	<field name="Usúario punido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="Usúario punido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="Motivo da Punição" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="motivo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Motivo da Punição"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="denuncias"/>
+	</field>
+	<field name="Punição" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="solucao_aplicada"/>
+		<property name="com.jaspersoft.studio.field.label" value="Punição"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solucoes_denuncias"/>
+	</field>
+	<field name="Data/Hora da Punição" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="data_resolucao"/>
+		<property name="com.jaspersoft.studio.field.label" value="Data/Hora da Punição"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="solucoes_denuncias"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="10" width="570" height="40" uuid="82b65455-cefc-4ca7-af05-17617630cd81"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RELATÓRIO DE DENUNCIAS E SOLUÇÕES"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="50" width="802" height="20" backcolor="#1C208C" uuid="2a724f88-02b3-40a7-9419-6dc2a8cd47d8"/>
+				<graphicElement>
+					<pen lineColor="#091B80"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="137" height="30" forecolor="#FAFAFA" backcolor="#071E73" uuid="be16c4d3-1201-4359-8cbd-0118c4231889">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bad1f698-51f8-4bb4-b174-f32321c640ec"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Moderador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="137" y="0" width="133" height="30" forecolor="#FAFAFA" backcolor="#071E73" uuid="34c4e2ba-7005-4540-9bdc-f291de92d149">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4a3f6f8-0cbc-4055-af1b-e3f96512dfc2"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="0" width="133" height="30" forecolor="#FAFAFA" backcolor="#071E73" uuid="2bf6db00-3cc7-48ae-b5f7-d6658f0a18ae">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0fbd2b1-0dc4-481d-9b9f-e3c906a00314"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usúario punido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="403" y="0" width="133" height="30" forecolor="#FAFAFA" backcolor="#071E73" uuid="de4223e1-bb7a-4584-a9ad-e231b488067d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="481f3670-9717-4ec2-a40c-c4a8d7c3f3af"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo da Punição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="0" width="133" height="30" forecolor="#FAFAFA" backcolor="#071E73" uuid="7657ef28-fb94-4afb-8478-a2965e0784df">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b9a42ad-d7c8-45e7-8125-fa6751c3d07f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Punição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="669" y="0" width="133" height="30" forecolor="#FAFAFA" backcolor="#071E73" uuid="640f8954-630c-4937-8ace-19552ba4f58d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="016eb8b5-b191-45ce-b3ea-3c13f23226e3"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data da Punição]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="137" height="30" uuid="ba4f3449-995f-48ce-ab60-b39d854058cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bad1f698-51f8-4bb4-b174-f32321c640ec"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Moderador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="133" height="30" uuid="a4500f5e-a36c-4a16-bd6c-f09876a0b011">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4a3f6f8-0cbc-4055-af1b-e3f96512dfc2"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="133" height="30" uuid="b5a66e98-ae42-44c5-ac96-0141fefbe253">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0fbd2b1-0dc4-481d-9b9f-e3c906a00314"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Usúario punido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="0" width="133" height="30" uuid="0f6f1b7c-bdea-404f-b06c-1ddd0fd788b2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="481f3670-9717-4ec2-a40c-c4a8d7c3f3af"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Motivo da Punição}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="0" width="133" height="30" uuid="09bbd17c-c552-4ead-904d-055f286c81cd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b9a42ad-d7c8-45e7-8125-fa6751c3d07f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Punição}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="669" y="0" width="133" height="30" uuid="cd1d323e-86ff-429a-b06e-22d4aeb0c27c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="016eb8b5-b191-45ce-b3ea-3c13f23226e3"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Data/Hora da Punição}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="55" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="714" y="40" width="88" height="15" uuid="5b071308-3ae6-44a9-8822-f27d5bf33580">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#030303"/>
+				</box>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

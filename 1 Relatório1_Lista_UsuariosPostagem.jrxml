@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="94932ff5-0b30-4aed-ba22-9852b45c2eb6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AtividadeFinal"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+	u.nome As "usuarios",
+    p.conteudo AS "Postagens",
+     CURDATE() 
+FROM 
+	usuarios AS u
+INNER JOIN 
+	postagens AS p ON p.usuario_id = u.usuario_id;]]>
+	</queryString>
+	<field name="usuarios" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="Postagens" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="conteudo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Postagens"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="postagens"/>
+	</field>
+	<field name="CURDATE()" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="CURDATE()"/>
+		<property name="com.jaspersoft.studio.field.label" value="CURDATE()"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement mode="Opaque" x="10" y="0" width="534" height="60" forecolor="#1C23E8" backcolor="#FFFFFF" uuid="7c685b61-12e2-4b0e-a35f-5b44e7ba901c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["LISTA DE USUÁRIOS E POSTAGENS"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="60" width="555" height="16" backcolor="#3114B5" uuid="76cd6af9-ebf5-49aa-980c-28d815bf3c06"/>
+				<graphicElement>
+					<pen lineColor="#3A9699"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="80" width="555" height="4" forecolor="#589AA6" backcolor="#3466A8" uuid="ea41eb13-a363-4ee6-9944-39aa65ac0267"/>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="180" height="30" backcolor="#70BDE6" uuid="7ef4e17e-77e9-4a83-9855-b93c93ee094b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d3c2b51-1487-4d6b-80d5-ce9b6edfb045"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#1111AB"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[USUÁRIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="375" height="30" backcolor="#70BDE6" uuid="944732f4-35eb-44d9-bc1f-621a46b053ff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f1e0ad07-d91c-4ad4-93ce-6d5f99b38004"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#1111AB"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POSTAGENS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="180" height="30" uuid="3cafdc5d-81cb-450a-ad13-06b114d1e165">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d3c2b51-1487-4d6b-80d5-ce9b6edfb045"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="375" height="30" uuid="d40d8d68-3a0d-45a8-ac2f-9fc8d76bb3fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f1e0ad07-d91c-4ad4-93ce-6d5f99b38004"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Postagens}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="73" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="10" width="555" height="19" backcolor="#213B8A" uuid="adeba43a-0df3-462f-b22e-db3e8f3fdbac"/>
+				<graphicElement>
+					<pen lineColor="#29A5D6"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="30" width="100" height="20" uuid="bd3c020a-d8dd-4152-9498-6a4e5c19123a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

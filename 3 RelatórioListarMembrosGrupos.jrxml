@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatórioMembrosGrupos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92085d3e-8503-4c60-a1f9-0594a8f68a15">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AtividadeFinal"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT DISTINCT
+	  g.nome AS Grupo,
+      u.nome AS Participante,
+      mg.papel AS "Função no Grupo"
+  
+FROM 
+	membros_grupos AS mg
+INNER JOIN 
+	usuarios AS u ON u.usuario_id = mg.grupo_id
+INNER JOIN
+	grupos AS g ON g.grupo_id = mg.grupo_id
+Where papel = "Membro";]]>
+	</queryString>
+	<field name="Grupo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="Grupo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="grupos"/>
+	</field>
+	<field name="Participante" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="Participante"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="Função no Grupo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="papel"/>
+		<property name="com.jaspersoft.studio.field.label" value="Função no Grupo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="membros_grupos"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<textField>
+				<reportElement x="80" y="10" width="400" height="40" uuid="c98e9629-3ef1-41a9-a0e9-21a7bf3874eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RELATÓRIO DOS MEMBROS  GRUPOS"]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="0" y="70" width="555" height="30" backcolor="rgba(14, 48, 150, 0.9607843)" uuid="5736b55c-46bb-4e39-b397-680fe49838fd"/>
+				<graphicElement>
+					<pen lineColor="#FCFAFA"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="185" height="30" forecolor="#F5F0F0" backcolor="#0B156E" uuid="bb2a23e5-a67d-42c6-b6d0-6647bd775493">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02f1b820-daeb-4a0b-892e-56271da93b72"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#020D3D"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[	GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="185" height="30" forecolor="#F5F0F0" backcolor="#0B156E" uuid="b9dcbd7b-1cb1-4cbc-bfa5-b01766b1cb62">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="add88947-90f1-46d1-b4ae-0c51c2aeec5d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#020D3D"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARTICIPANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="185" height="30" forecolor="#F5F0F0" backcolor="#0B156E" uuid="6162d349-687e-4378-836b-6e1d5d8b4655">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="af0e24ad-147f-4752-8a7e-9185900f0933"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#020D3D"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FUNÇÃO GRUPO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="30" uuid="bb247ba2-1800-4434-b62c-9ecf00d7a709">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02f1b820-daeb-4a0b-892e-56271da93b72"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#020D3D"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="30" uuid="bd7c4611-e474-4ea0-935a-2d5cbfc6ee52">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="add88947-90f1-46d1-b4ae-0c51c2aeec5d"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#020D3D"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Participante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="30" uuid="25078df0-712c-4e63-bd77-7534150eb75c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="af0e24ad-147f-4752-8a7e-9185900f0933"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#020D3D"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Função no Grupo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="63" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="33" width="100" height="30" uuid="d0fc5cc4-f944-42a3-a9a4-81f08aebdee1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

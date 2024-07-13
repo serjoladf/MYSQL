@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatorio_TotalAmigos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eaf84f5a-26f1-4c61-b2c7-c80cf53c0610">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AtividadeFinal"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+ u.nome AS Usuarios,
+ count(a.status) As 'Total de Amigos',
+CURRENT_DATE()
+FROM 
+	amizades as a
+INNER JOIN 
+	usuarios  AS u on u.usuario_id = a.usuario_id1
+Where status = "Aceita" 
+Group BY (u.nome)
+HAVING 
+COUNT(a.status) >= 2
+ORDER BY count(a.status) desc;]]>
+	</queryString>
+	<field name="Usuarios" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="Usuarios"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="Total de Amigos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Total de Amigos"/>
+		<property name="com.jaspersoft.studio.field.label" value="Total de Amigos"/>
+	</field>
+	<field name="CURRENT_DATE()" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="CURRENT_DATE()"/>
+		<property name="com.jaspersoft.studio.field.label" value="CURRENT_DATE()"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<textField>
+				<reportElement x="47" y="10" width="465" height="30" forecolor="#060330" uuid="50f6fc88-1cdb-43dc-8e8f-0df6a74e2a19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL DE AMIGOS ACEITO POR USUÁRIOS"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="55" width="555" height="10" backcolor="#093CBD" uuid="4dfe25af-fb9e-440c-9de7-82a23210bbe0"/>
+				<graphicElement>
+					<pen lineColor="#8BF7DC"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="70" width="555" height="19" backcolor="#093CBD" uuid="5de38181-af17-44e1-b447-8f9f6a62d2ca"/>
+				<graphicElement>
+					<pen lineColor="#8BF7DC"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="278" height="30" forecolor="#34EBCF" backcolor="#03032B" uuid="b2b67637-9d0e-4c36-bb7e-81f2774c0785">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f6682a27-6db3-4af4-8461-cdfa0ec5737f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#100542"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[USUÁRIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="278" y="0" width="277" height="30" forecolor="#34EBCF" backcolor="#03032B" uuid="cd24e193-a79b-4d1d-a6cb-89bb93b99e2e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e6d36a55-7949-4aa7-aaa1-73122215b27f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#100542"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE AMIGOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="278" height="30" uuid="30de5053-0105-4620-b6e8-5eb05d14532a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f6682a27-6db3-4af4-8461-cdfa0ec5737f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#100542"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Usuarios}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="277" height="30" uuid="26bd7ab9-37f9-40d7-b79e-ff07ecf8177b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e6d36a55-7949-4aa7-aaa1-73122215b27f"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#100542"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total de Amigos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="3" width="555" height="19" backcolor="#093CBD" uuid="5dfd6687-c580-44e0-91a6-0736553d24e7"/>
+				<graphicElement>
+					<pen lineColor="#8BF7DC"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="288" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="454" y="4" width="100" height="20" uuid="8b3b126e-4a59-471d-bc00-b172e8feb943"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="10" y="30" width="530" height="256" uuid="99dff1d0-91d5-432e-9745-571934ad90af"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Usuarios}]]></seriesExpression>
+						<categoryExpression><![CDATA[0]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Total de Amigos}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true">
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

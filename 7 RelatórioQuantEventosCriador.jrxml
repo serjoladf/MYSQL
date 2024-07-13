@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_5" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2727846c-03a6-48ec-9246-01e91d3a01f5">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AtividadeFinal"/>
+	<queryString language="SQL">
+		<![CDATA[-- Esta consulta retorna o nome do criador de eventos e a quantidades de enventos criado por ele
+SELECT 
+	us_e.nome AS "Criador do Evento",
+	count(e.criador_id) AS "Qt eventos P/ Criador" -- Uso do Count para contagem
+FROM 
+	usuarios AS us 
+INNER JOIN
+	eventos_usuarios_convites AS euc ON euc.convidado_id = us.usuario_id
+INNER JOIN
+	eventos AS e ON e.criador_id = euc.evento_id
+INNER JOIN 
+	usuarios AS us_e on us_e.usuario_id = e.criador_id
+GROUP BY(e.criador_id) -- Agrupa qt de eventos por Criador
+HAVING  count(e.criador_id) >= 8 -- Função HAVING filtrando qt_eventos maior ou igua a 8
+ORDER BY count(e.criador_id); -- Função de ordenação]]>
+	</queryString>
+	<field name="Criador do Evento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="Criador do Evento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="Qt eventos P/ Criador" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Qt eventos P/ Criador"/>
+		<property name="com.jaspersoft.studio.field.label" value="Qt eventos P/ Criador"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="70" uuid="80f53c2c-18bc-403a-9fee-24318d9e930b"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RELATÓRIO DE QUANTIDADE DE EVENTOS POR USUÁRIOS"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="-30" width="555" height="27" backcolor="#1120A8" uuid="60421bb2-5428-4e94-966d-28d5c477943a"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="278" height="30" forecolor="#FFFCFC" backcolor="#190E80" uuid="9a1ba028-1a15-48c2-84ae-82ee3bd516e3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c5b3122-8aad-464c-8af7-98e1e57bc069"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Criador do Evento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="278" y="0" width="277" height="30" forecolor="#FFFCFC" backcolor="#190E80" uuid="d5e278ba-aeff-4a02-8232-28a2d8e8a6dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ddf42c0c-c3a4-419e-826b-ff845639fb35"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qt eventos P/ Criador]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="278" height="30" uuid="944d6c3c-a47a-442d-b1f0-cd364ce9c046">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c5b3122-8aad-464c-8af7-98e1e57bc069"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Criador do Evento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="277" height="30" uuid="2dc5e1f2-f386-4299-9d56-da90fb04d16a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ddf42c0c-c3a4-419e-826b-ff845639fb35"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Qt eventos P/ Criador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="306" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="10" y="50" width="540" height="240" uuid="d76ee293-5964-45d8-9c70-604f00f0b5b7"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Criador do Evento}]]></seriesExpression>
+						<categoryExpression><![CDATA[0]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Qt eventos P/ Criador}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true">
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
